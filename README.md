@@ -8,7 +8,9 @@ Here is my personal vimrc and you can use it.
 ## installation :
 
 >  cd /tmp 
+
 >  git clone https://github.com/MohammadRaziei/best-.vimrc.git
+
 >  mv /tmp/best-.vimrc/vimrc ~/.vimrc
 
 
