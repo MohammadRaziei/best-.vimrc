@@ -1,0 +1,139 @@
+nmap <F5>		:wall!<CR>:!clear && make && clear && ./main <CR>
+imap <F5>		<ESC>:wall!<CR>:!clear && make && clear && ./main <CR>
+nmap <s-F5>		:wall!<CR>:!clear && make clean && make<CR>
+nmap <F4>		:qall!<CR>
+imap <F4>		<ESC>:qall!<CR>
+
+nmap <CR>		a
+vmap <CR>		<ESC>
+nmap <space>	i
+vmap <space>	y
+imap <c-c>		<ESC>yya
+nmap <c-c>		yy
+vmap <c-c>		y
+imap <c-v>		<ESC>p$a
+vmap <c-v>		<Esc>hp$a
+map <c-t>		a<c-t><ESC>
+
+
+
+"inoremap <c-CR>	<ESC>
+
+"set showtabline=2               " File tabs allways visible
+":nmap <C-t> :tabnew<cr>
+":map <C-t> :tabnew<cr>
+
+nnoremap <leader>so :OpenSession 
+nnoremap <leader>ss :SaveSession 
+nnoremap <leader>sd :DeleteSession<CR>
+nnoremap <leader>sc :CloseSession<CR>
+
+
+
+nnoremap <c-z>	:u<CR><ESC><ESC><ESC>
+inoremap <c-z>	<ESC>:u<CR>a
+vnoremap <c-z>	<ESC>:u<CR><ESC>
+imap <c-r>		<ESC><c-r>a
+nnoremap <c-Q>	:q!<CR>
+inoremap <c-Q>	<ESC>:q!<CR>a
+nnoremap <S-Q>	:q!<ESC>
+vnoremap <S-Q>	<ESC>:q!<CR>a
+imap <c-Q>	<ESC>:q!<CR>a
+nmap <c-Q>	:q!<CR>
+
+nnoremap <c-n>		:tabe<CR>
+"inoremap <c-n>		<ESC>:tabe<CR>a
+nnoremap <m-up>		:tabn<CR>
+inoremap <m-up>		<ESC>:tabn<CR>a
+nnoremap <m-down>	:tabp<CR>
+inoremap <m-down>	<ESC>:tabp<CR>a
+nnoremap <m-Right>	:tabn<CR>
+inoremap <m-Right>	<ESC>:tabn<CR>a
+nnoremap <m-Left>	:tabp<CR>
+inoremap <m-Left>	<ESC>:tabp<CR>a
+
+nnoremap <silent><tab>		:tabn<CR>
+nnoremap <silent><s-tab>	:tabp<CR>
+inoremap <silent><s-tab>	<ESC>:tabp<CR>a
+
+
+nmap <s-Left>	<c-w><Left>
+imap <s-Left>	<ESC><c-w><Left>a
+nmap <c-Left>	b
+imap <c-left>	<ESC>bi
+nmap <s-Down>	<c-w><Down>
+imap <s-Down>	<ESC><c-w><Down>a
+nmap <s-Up>		<c-w><Up>
+imap <s-Up>		<ESC><c-w><Up>a
+nmap <s-Right>	<c-w><Right>
+imap <s-Right>	<ESC><c-w><Right>a
+nmap <c-Right>	el
+imap <c-Right>	<ESC>ea
+
+nmap <silent>  <c-s>		:wall!<CR>
+imap <silent>  <c-s>		<ESc>:wall!<CR>a
+
+imap <c-d> <ESC>dda
+nmap <c-d> dd
+vmap <c-d> d
+
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+
+
+nnoremap <silent><c-x>0	:close<CR><c-w>=
+nnoremap <silent><c-x>1	:only<CR><c-w>=
+nnoremap <silent><c-x>2 :sp<CR><c-w>=
+nnoremap <silent><c-x>3	:vsp<CR><c-w>=
+
+inoremap <silent><c-x>0	<ESC>:close<CR><c-w>=a
+inoremap <silent><c-x>1	<ESC>:only<CR><c-w>=a
+inoremap <silent><c-x>2 <ESC>:sp<CR><c-w>=a
+inoremap <silent><c-x>3	<ESC>:vsp<CR><c-w>=a
+
+set autoread
+
+set cursorline
+colorscheme desert
+set nocompatible    "run in vim mode
+"set expandtab       "expand tabs into spaces
+set autoindent      "auto-indent new lines
+set smartindent     "return ending brackets to proper locations
+set softtabstop=4   "indentation level of soft-tabs
+set tabstop=4       "indentation leves of normal tabs
+set shiftwidth=4    "how many columns to re-indent with << and >>
+set showmatch       "show matching brackets
+set ruler           "show cursor position at all times
+set nohls           "don't highlight the previous search term
+set number          "turn on line numbering
+set wrap            "turn on visual word wrapping
+set linebreak       "only break lines on 'breakat' characters
+syntax on           "turn on syntax highlighting
+ 
+if has("autocmd")
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+\| exe "normal g'\"" | endif
+endif
+ 
+augroup filetypedetect 
+  au! BufRead,BufNewFile *nc setfiletype nc "http://www.vim.org/scripts/script.php?script_id=1847
+  "html.ep now handled by https://github.com/yko/mojo.vim
+  autocmd BufNewFile,BufReadPost *.ino,*.pde set filetype=cpp
+augroup END 
+
+"strip trailing whitespace from certain files
+autocmd BufWritePre *.conf :%s/\s\+$//e
+autocmd BufWritePre *.py :%s/\s\+$//e
+autocmd BufWritePre *.css :%s/\s\+$//e
+autocmd BufWritePre *.html :%s/\s\+$//e
+
+:set bs=2 "fix backspace on some consoles
